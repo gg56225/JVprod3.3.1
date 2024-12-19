@@ -1,22 +1,22 @@
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        // Примеры использования методов класса Calculator
-        System.out.println("Sum: " + Calculator.sum(5, 3.2));
-        System.out.println("Multiply: " + Calculator.multiply(5, 3.2));
-        System.out.println("Divide: " + Calculator.divide(5, 3.2));
-        System.out.println("Subtract: " + Calculator.subtract(5, 3.2));
+        DatabaseOperations<String> db = new DatabaseManager<>();
 
-        // Примеры использования метода compareArrays
-        Integer[] array1 = {1, 2, 3};
-        Integer[] array2 = {1, 2, 3};
-        Integer[] array3 = {4, 5, 6};
-        System.out.println("Arrays are equal: " + ArrayUtils.compareArrays(array1, array2));
-        System.out.println("Arrays are equal: " + ArrayUtils.compareArrays(array1, array3));
+        // Сохранение данных
+        db.save("Item 1");
+        db.save("Item 2");
 
-        // Примеры использования класса Pair
-        Pair<Integer, String> pair = new Pair<>(1, "One");
-        System.out.println("First: " + pair.getFirst());
-        System.out.println("Second: " + pair.getSecond());
-        System.out.println("Pair: " + pair);
+        // Получение данных
+        System.out.println("Get item with ID 0: " + db.get(0));
+
+        // Получение всех данных
+        List<String> allItems = db.getAll();
+        System.out.println("All items: " + allItems);
+
+        // Удаление данных
+        db.delete("Item 1");
+        System.out.println("All items after deletion: " + db.getAll());
     }
 }
